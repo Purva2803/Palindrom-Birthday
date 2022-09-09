@@ -10,46 +10,39 @@ function reverseStr(str){
 function isPalindrome(str){
     var reverse = reverseStr(str);
     if(str===reverse){
-        return true;
-    }else{
-        return false;
-    }
+        
+        return str = reverse;
+    
+}
 }
 
-var date1 ={
-    day:5,
-    month:9,
-    year:2020
-}
 
-function convertDateToStr(date1){
+function convertDateToStr(date){
 
     var dateStr ={ day:'',month:'',year:''};
-    if(date1.day <10){
-        dateStr.day = '0' + date1.day;
+    if(date.day <10){
+        dateStr.day = '0' + date.day;
 
     }
     else{
-        dateStr.day = date1.day.toString();
+        dateStr.day = date.day.toString();
     }
 
-    if(date1.month<10){
-        dateStr.month = '0' + date1.month;
+    if(date.month<10){
+        dateStr.month = '0' + date.month;
 
     }
     else{
-        dateStr.month= date1.month.toString();
+        dateStr.month= date.month.toString();
     }
     
-        dateStr.year= date1.year.toString();
+        dateStr.year= date.year.toString();
     return dateStr;
 }
 
-console.log(convertDateToStr(date1));
 
-
-function getAllDateFormates(){
-   var dateStr = convertDateToStr(date1) ;
+function getAllDateFormates(date){
+   var dateStr = convertDateToStr(date) ;
    var ddmmyyy =dateStr.day +dateStr.month +dateStr.year;
    var mmddyyyy =dateStr.month +dateStr.day+dateStr.year;
    var yyyymmdd= dateStr.year+ dateStr.month + dateStr.day;
@@ -59,12 +52,13 @@ function getAllDateFormates(){
    return [ddmmyy,mmddyy,ddmmyyy,mmddyyyy,yyyymmdd,yymmdd];
 
 }
-function checkPalindromforAllDateFormates(){
-    var listOfPalindroms=getAllDateFormates(date1);
+
+function checkPalindromforAllDateFormates(date){
+    var listOfPalindromes=getAllDateFormates(date);
     var flag=false;
-    for(var i=0;i<listOfPalindroms.length;i++)
+    for(var i=0;i<listOfPalindromes.length;i++)
     {
-        if(isPalindrome(listOfPalindroms[i])){
+        if(isPalindrome(listOfPalindromes[i])){
             flag=true;
             break;
         }
@@ -72,9 +66,9 @@ function checkPalindromforAllDateFormates(){
 
     return flag;
 }
-function getNextPalindromDate(date1){
+function getNextPalindromDate(date){
     var ctr=0;
-    var nextDate = getNextDate(date1);
+    var nextDate = getNextDate(date);
        
     while(1){
             ctr++;
@@ -85,15 +79,15 @@ function getNextPalindromDate(date1){
 
             nextDate = getNextDate(nextDate);
         }
-         return(ctr,nextDate);
+         return[ctr,nextDate];
     }
 
 
 
-function getNextDate(date1){
-    var day = date1.day + 1;
-    var month = date1.month;
-    var year = date1.year;
+function getNextDate(date){
+    var day = date.day + 1;
+    var month = date.month;
+    var year = date.year;
 
     var dayInmonths=[31,28,31,30,31,30,31,31,30,31,30,31];
 
@@ -131,6 +125,7 @@ return{
 };
 }
 
+
 function isLeapyear(year){
     if(year%400===0){
         return true;
@@ -144,53 +139,11 @@ function isLeapyear(year){
     return false;
 
 }
-console.log(isLeapyear(2020));
 
 
-function getPreviousDate(date1){
 
-    function getNextDate(date1){
-        var day = date1.day - 1;
-        var month = date1.month;
-        var year = date1.year;
-    
-        var dayInmonths=[31,28,31,30,31,30,31,31,30,31,30,31];
-    
-        if(month===2){
-            if(isLeapyear(year)){
-                if(day>29){
-                    day =1;
-                    month--;
-                }
-            }
-         else{
-            if(day>28)
-            {
-                day=1;
-                month--;
-            }
-         }
-        }
-    
-        else{
-            if(day>dayInmonths[month-1]){
-            day=1;
-            month--;
-        }
-    }
-    if(month>12){
-        month =1;
-        year--;
-    }
-    return{
-    
-        day:day,
-        month:month,
-        year:year
-    };
-    }
-    
-}
+
+   
 
 function clickHandler(e){
     var bdayStr=dateInputRef.value ;
@@ -201,20 +154,21 @@ function clickHandler(e){
             month:Number(listOfDate[1]),
             year:Number(listOfDate[0])
         };
-        var isPalindrome = checkPalindromforAllDateFormates(date);
-        if(isPalindrome){
+       var isPalindromes = checkPalindromforAllDateFormates(date);
+        if(isPalindromes){
             reultRef.innerText ="your string is pallindrome";
 
         }else{
-            reultRef.innerText="your string is not pallindrom";
+            
             var [ctr ,nextDate]= getNextPalindromDate(date);
-            reultRef.innerText = `the next pallindrom date is ${nextDate.day}-${nextDate.month}-{nextDate.year} you are] late by $(ctr)`;
+            reultRef.innerText = `the next pallindrom date is ${nextDate.day}-${nextDate.month}-${nextDate.year} you are] late by $(ctr)`;
                             
         }
 
     }
-
-}
+   
+    }
+   
 
 var dateInputRef = document.querySelector("#bday-input");
 var showBtnRef = document.querySelector("#show-btn");
