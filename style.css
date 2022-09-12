@@ -1,0 +1,44 @@
+
+
+
+
+.s1{
+    text-align: center;
+    
+}
+
+h2{
+    text-align: center;
+    background-color: whitesmoke;
+    font-family: 'Satisfy', cursive;
+}
+
+body{
+    background-color: #B1B2FF;
+}
+
+#bday-input{
+     border: 2px solid white;
+     border-radius: 20px;
+     font-weight: 600;
+     font-family: 'Satisfy', cursive;
+}
+
+#show-btn{
+    border: 2px solid white;
+     border-radius: 20px;
+     font-weight: 600;
+     font-family: 'Satisfy', cursive;
+}
+
+#result{
+
+    font-family: 'Satisfy', cursive;
+}
+.c1{
+
+    display: flex;
+    
+    justify-content: center;
+    
+}

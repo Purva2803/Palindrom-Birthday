@@ -161,7 +161,7 @@ function clickHandler(e){
         }else{
             
             var [ctr ,nextDate]= getNextPalindromDate(date);
-            reultRef.innerText = `the next pallindrom date is ${nextDate.day}-${nextDate.month}-${nextDate.year} you are late by ${ctr}`;
+            reultRef.innerText = `the next pallindrom date is ${nextDate.day}-${nextDate.month}-${nextDate.year} you are late by ${ctr} days` ;
                             
         }
 
